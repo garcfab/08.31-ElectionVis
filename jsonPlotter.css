@@ -1,0 +1,36 @@
+body, html {
+	font-family: "Helvetica Neue";
+	font-size: 12px;
+}
+
+.string, .number {
+	/*border: solid;*/
+	border-radius: 4px;
+	border-width: 1px;
+	margin: 4px;
+	padding: 2px;
+	background-color: #faecbf;
+}
+
+.number {
+	background-color: #d5c2fa;
+}
+.boolean {
+	background-color: #f5bbb7;
+}
+
+.array {
+	border: solid;
+	/*border-radius: 4px;*/
+	border-width: 1px;
+	border-color: red;
+	margin: 4px;
+	padding: 4px;
+	/*background-color: lightgray;*/
+	display: inline-block;
+}
+
+.objectProperty {
+	padding: 1px;
+	margin: 0px
+}

@@ -1,0 +1,153 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: white;
+  /*background-image:url('img/tiny_grid.png');*/
+
+}
+.container {
+  width: 1000px;
+  padding: 12px;
+  margin: 20px auto;
+}
+.container .textContainer {
+  margin-left: 36.66666666666667%;
+}
+.container .textContainer h1 {
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
+  font-size: 40px;
+  line-height: 55px;
+  color: black;
+}
+.container .textContainer p {
+  font-family: "adelle", "Helvetica";
+  font-size: 16px;
+  line-height: 22px;
+  color: black;
+}
+.row:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+.borderChart {
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: black;
+}
+#containerChart1 {
+  width: 1000px;
+  padding: 12px;
+  margin: 20px auto;
+}
+#containerChart1:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+#containerChart1 .textContainer {
+  margin-left: 36.66666666666667%;
+}
+#containerChart1 .textContainer h1 {
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
+  font-size: 40px;
+  line-height: 55px;
+  color: black;
+}
+#containerChart1 .textContainer p {
+  font-family: "adelle", "Helvetica";
+  font-size: 16px;
+  line-height: 22px;
+  color: black;
+}
+#containerChart1 .column {
+  width: 26.666666666666668%;
+  height: 500px;
+  border-radius: 8px;
+  float: left;
+  /*.borderChart;*/
+
+}
+#containerChart1 .column .borderChart {
+  box-shadow: 0px 3px 0px #000000;
+  height: 500px;
+  background-color: #808080;
+  position: relative;
+  overflow: hidden;
+}
+#containerChart1 .column .borderChart .move {
+  position: absolute;
+  right: 0%;
+}
+#containerChart1 .link {
+  width: 10%;
+  height: 500px;
+  float: left;
+}
+#containerChart1 .select {
+  width: 26.666666666666668%;
+  margin: 25px 0;
+  float: left;
+  height: 31px;
+}
+#containerChart1 .select .borderChart {
+  box-shadow: 0px 3px 0px #000000;
+  height: 31px;
+  background-color: #808080;
+  position: relative;
+  overflow: hidden;
+}
+#containerChart1 .select .borderChart .move {
+  position: absolute;
+  width: 100%;
+}
+#containerChart1 .select .borderChart .move select {
+  width: 100%;
+  border-radius: 8px;
+  padding-top: 5px;
+  /*margin-top: 10px;*/
+
+  height: 31px;
+  margin: 0px;
+  border: none;
+  font: inherit;
+  font-weight: bold;
+  font-family: "jaf-bernino-sans-comp";
+  font-size: 16px;
+  text-indent: 10px;
+  /*line-height: 45px;*/
+
+  /*background-color: #f6faff;*/
+
+  color: black;
+  outline: none;
+}
+#containerChart1 .select .borderChart .move select option {
+  text-indent: 18px;
+  font-weight: normal;
+  /*color: #357dba;*/
+
+}
+#containerChart1 .space {
+  width: 10%;
+  height: 10px;
+  float: left;
+}
+#containerChart1 #categorical {
+  height: 500px;
+  background-color: none;
+  margin-top: 35px;
+}
+#columnStartText {
+  color: white;
+  position: absolute;
+  top: 45%;
+  margin-right: 33%;
+  font-size: 16px;
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
+  right: 0%;
+}
+text {
+  font-family: "jaf-bernino-sans-comp", "adelle";
+}

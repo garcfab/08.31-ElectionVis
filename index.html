@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title> </title>
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="js/lib/d3.v2.js"></script>
+	<script type="text/javascript" src="js/lib/fisheye.js"></script>
+
+	<script type="text/javascript" src="js/column.js"></script>
+	<script type="text/javascript" src="js/link.js"></script>
+	<script type="text/javascript" src="js/categorical.js"></script>
+	<script type="text/javascript" src="js/drawData.js"></script>
+
+
+	<!-- STYLESHEET -->
+	<link type="text/css" rel="stylesheet" href="election.css"/>
+	<link type="text/css" rel="stylesheet" href="jsonPlotter.css"/>
+
+	<!-- TYPEKIT -->
+
+	<script type="text/javascript" src="//use.typekit.net/qwl2org.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	 
+</head>
+<body>
+
+	<div class="bg-gray">
+		<div class="container">
+			<div class="textContainer">
+				<h1>Aggregated Data from the Huffington Post Polls on the 2012 U.S. Election</h1>
+
+			<!-- 	<p>From all the data on the polls from the Huffinton post, what appears more according to different sub-sets?</p>
+		
+				<p>We put together all the data from the polls made by the Huffington post on the 2012 U.S. Election </p>
+
+				<p>How many of the choices on the polls had a certain characteristic? For example how many of the choices on all the polls where to Romney? How much of the choices were incumbent? This represent only the patterns from the aggregated choices of all polls.</p> -->
+			</div>
+		</div>
+	</div>
+
+	<div id="containerChart1">
+		<div class="row">
+			<div class="select">
+				<div class="borderChart">
+	
+				</div>
+			</div>
+			<div class="space"></div>
+			<div class="select">
+				<div class="borderChart">
+	
+				</div>
+			</div>
+			<div class="space"></div>
+			<div class="select">
+				<div class="borderChart">
+	
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+				<div class="borderChart"></div>
+			</div>
+			<div class="link"></div>
+			<div class="column">
+				<div class="borderChart"></div>
+			</div>
+			<div class="link"></div>
+			<div class="column">
+				<div class="borderChart"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div id="categorical"></div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+
+var data
+var columnData = ["topic", "title", "choice"].map(function(e){
+	return {nestType: e}
+})
+var mainDomains = ["topic", "title", "state", "party", "choice", "incumbent"]
+
+///////////////
+//LOAD DATA
+////////////// "http://elections.huffingtonpost.com/pollster/api/charts.json"
+d3.json("charts.json", function (d) {
+	data = d
+	data = data.filter(function (e){
+		// if (e.topic == false) {return false};
+		var r
+		e.estimates.length>0 ? r = true : r = false
+		return r
+	})
+
+	var data2 = []
+	data.forEach(function(e){
+		e.estimates.forEach(function(e2){
+			e2.title = e.title
+			if (e2.title == false || e2.title == undefined || e2.title == null) {e2.title = "Not Applicable"};
+			e2.slug = e.slug
+			if (e2.slug == false || e2.slug == undefined || e2.slug == null) {e2.slug = "Not Applicable"};
+			e2.topic = e.topic
+			if (e2.topic == false || e2.topic == undefined || e2.topic == null) {e2.topic = "Not Applicable"};
+			e2.state = e.state
+			e2.poll_count = e.poll_count
+			e2.last_updated = e.last_updated
+			if (e2.incumbent == undefined || e2.incumbent == null) {e2.incumbent = "Not Applicable"};
+			if (e2.incumbent == false) {e2.incumbent = "No"};
+			if (e2.incumbent == true) {e2.incumbent = "Yes"};
+			if (e2.party == false || e2.party == undefined || e2.party == null) {e2.party = "Not Applicable"};
+			data2.push(e2)
+		})
+	})
+	data = data2
+
+	
+
+	init()
+})
+
+function init(){
+
+	// Add options to select element
+	// var sel = d3.select("#containerChart1 select")
+	// sel.selectAll("option")
+	// 	.data(mainDomains)
+	// 	.enter()
+	// 	.append("option")
+	// 	.text(function(d){return d})
+
+	// sel.on("change", function(){
+	// 	var order = d3.select(this).attr("order")
+	// 	var nestType
+	// 	d3.select(this).selectAll("option")
+	// 		.each(function(e){
+	// 			var sel = d3.select(this)
+	// 			if (sel.property("selected")==true) {
+	// 				nestType = sel.text()
+	// 			}
+	// 		})
+	// 	columnData[order].nestType = nestType
+	// 	d3.select(".column>.borderChart#c"+ order).call(column.init)
+	// })
+
+	// Set ID and Order
+	d3.selectAll(".column>.borderChart").data([0,1,2])
+		.attr({
+			order: function(d){return d},
+			id: function(d){return "c"+d}
+		})
+	d3.selectAll(".select>.borderChart").data([0,1,2])
+		.attr({
+			order: function(d){return d},
+			id: function(d){return "s"+d}
+		})
+	d3.selectAll(".link").data([0,1,2])
+		.attr({
+			order: function(d){return d},
+			id: function(d){return "l"+d}
+		})
+
+
+	d3.select(".column>.borderChart")
+		.each(function(){
+			d3.select(this).call(column.init)
+		})
+
+	d3.select(".column>.borderChart#c1")
+		.append("div")
+		.attr({
+			"class": "move", "id": "columnStartText"
+		})
+		.text("<- Select one or more")
+	categorical.init()
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+@width: 1000px;
+@linkW: 10%;
+@containerW: (100% - 2*@linkW)/3;
+@h: 500px;
+
+@fontTitle: "jaf-bernino-sans-comp", "Helvetica";
+@fontBody: "adelle", "Helvetica";
+
+@radius: 8px;
+
+@gray: gray;
+
+body{
+	margin: 0px;
+	padding: 0px;
+	background-color: white;
+	/*background-image:url('img/tiny_grid.png');*/
+}
+
+.container {
+	width: @width;
+	padding: 12px;
+	margin: 20px auto;
+
+	.textContainer {
+		margin-left: @containerW + @linkW;
+
+		h1 {
+			font-family: @fontTitle;
+			font-size: 40px;
+			line-height: 55px;
+			color: black;
+			//text-shadow: -1px -1px 0px black;
+		}
+
+		p {
+			font-family: @fontBody;
+			font-size: 16px;
+			line-height: 22px;
+			color: black;
+		}
+	}
+}
+
+.row:after {
+	display: table;
+	content: "";
+	clear: both;
+}
+
+@boxShadow: 0px 3px 0px black;
+
+.borderChart {
+	border-style: solid;
+	border-radius: @radius;
+	border-width: 2px;
+	border-color: black;
+}
+
+#containerChart1 {
+
+	&:after {
+		display: table;
+		content: "";
+		clear: both;
+	}
+
+	.container;
+
+	.column {
+		width: @containerW;
+		height: @h;
+		border-radius: @radius;
+		float: left;
+		/*.borderChart;*/
+
+		.borderChart{
+			box-shadow: @boxShadow;
+			height: @h;
+			background-color: @gray;
+			position: relative;
+			overflow: hidden;
+
+			.move {
+				position: absolute;
+				right: 0%;
+			}
+		}
+	}
+
+	.link{
+		width: @linkW;
+		height: @h;
+		float: left;
+	}
+
+	.select {
+		@height: 31px;
+
+		width: @containerW;
+		margin: 25px 0;
+		float: left;
+		height: @height;
+		
+		.borderChart{
+			box-shadow: @boxShadow;
+			height: @height;
+			background-color: @gray;
+			position: relative;
+			overflow: hidden;
+
+			.move {
+				position: absolute;
+				width: 100%;
+
+				
+				select {
+					width: 100%;
+					border-radius: @radius;
+					padding-top: 5px;
+					/*margin-top: 10px;*/
+					height: @height;
+					margin: 0px;
+					border: none;
+					font: inherit;
+					font-weight: bold;
+					font-family: "jaf-bernino-sans-comp";
+					font-size: 16px;
+					text-indent: 10px;
+					/*line-height: 45px;*/
+					/*background-color: #f6faff;*/
+					color: black;
+					outline:none;
+					
+					option {
+						text-indent: 18px;
+						font-weight: normal;
+						/*color: #357dba;*/
+					}
+			}
+		}
+
+		}
+	}
+	.space {
+		width: @linkW;
+		height: 10px;
+		float: left;
+	}
+
+}
+
+#containerChart1 #categorical {
+	height: @h;
+	background-color: none;
+	margin-top: 35px
+}
+
+#columnStartText {
+	color: white;
+	position: absolute;
+	top: 45%;
+	margin-right: 33%;
+	font-size: 16px;
+	font-family: @fontTitle;
+	right: 0%;
+}
+
+text {
+	font-family: "jaf-bernino-sans-comp", "adelle";
+}
+rect {
+	//shape-rendering: crispEdges;
+}
+
+.bg-gray {
+	// background-color: white;
+	// box-shadow: 0 2px 4px #313131 inset;
+}
+
+
