@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
 	<meta charset="utf-8">
-	<title> </title>
-	<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+	<title> Aggregated Data from the Huffington Post Polls on the 2012 U.S. Election </title>
+
+	<!-- DEVELOPMENT -->
+<!-- 
 	<script type="text/javascript" src="js/lib/d3.v2.js"></script>
 	<script type="text/javascript" src="js/lib/fisheye.js"></script>
 
@@ -13,30 +13,89 @@
 	<script type="text/javascript" src="js/link.js"></script>
 	<script type="text/javascript" src="js/categorical.js"></script>
 	<script type="text/javascript" src="js/drawData.js"></script>
+ -->
 
+ 	<!-- PRODUCTION -->
+	<script type="text/javascript" src="js/default.js"></script>
 
 	<!-- STYLESHEET -->
 	<link type="text/css" rel="stylesheet" href="election.css"/>
+	<!-- 
 	<link type="text/css" rel="stylesheet" href="jsonPlotter.css"/>
-
+ -->
 	<!-- TYPEKIT -->
 
 	<script type="text/javascript" src="//use.typekit.net/qwl2org.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	 
+	<script type="text/javascript">d3.select("html").classed("no-js", false)</script>
+
+	<!-- ANALYTICS -->
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-12228453-5']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 </head>
 <body>
+
+	<div class="full">
+		<div class="container">
+			<div class="logo">return to <a href="http://luiscarli.com" target="_blank">Luis Carli</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="container updateCont">
+		<div class="update">You need to update your browser to properly see this page</div>
+	</div>
 
 	<div class="bg-gray">
 		<div class="container">
 			<div class="textContainer">
 				<h1>Aggregated Data from the Huffington Post Polls on the 2012 U.S. Election</h1>
 
-			<!-- 	<p>From all the data on the polls from the Huffinton post, what appears more according to different sub-sets?</p>
-		
-				<p>We put together all the data from the polls made by the Huffington post on the 2012 U.S. Election </p>
+				<p>If we put together all the 2012 election pools from the Huffington Post what kind of patterns can emerge from its subsets?</p>
 
-				<p>How many of the choices on the polls had a certain characteristic? For example how many of the choices on all the polls where to Romney? How much of the choices were incumbent? This represent only the patterns from the aggregated choices of all polls.</p> -->
+				<h2>The Data</h2>
+
+				<p>Each pool has a topic, a title, the state where it has been done and a group of choices. The choices have the party to which they are associated and if the politic is incumbent.</p>
+
+				<div class="poolContainer">
+					<div class="pool top"></div>
+					<div class="pool">
+						<p class="poolP">Topic</p>
+						<p class="poolP">Title</p>
+						<p class="poolP">State</p>
+						<div class="choice">
+							<p class="poolP">Choice</p>
+							<p class="poolP">Party</p>
+							<p class="poolP">Incumbent</p>
+						</div>
+						<div class="choice">
+							<p class="poolP">Choice</p>
+							<p class="poolP">Party</p>
+							<p class="poolP">Incumbent</p>
+						</div>
+						<div class="choice">
+							<p class="poolP">Choice</p>
+							<p class="poolP">Party</p>
+							<p class="poolP">Incumbent</p>
+						</div>
+					</div>
+					<div class="pool bottom"></div>
+				</div>
+
+				<h2>How to Read the Visualization</h2>
+
+				<p>In the visualization bellow each column displays one of the categories of the pools shown above, which can be changed at will. In the first part of the visualization it's possible to see the distribution of a category according to selected subsets. The second part of the visualization shows the selections from the first part in the context of the whole data.</p>
+
 			</div>
 		</div>
 	</div>
@@ -75,16 +134,57 @@
 			</div>
 		</div>
 		<div class="row">
-			<div id="categorical"></div>
+			<div id="categorical">
+				<div class="tooltip0">
+					<p></p>
+				</div>
+				<div class="tooltip1">
+					<p></p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="select2">
+				<div class="borderChart">
+		
+				</div>
+			</div>
+			<div class="space"></div>
+			<div class="select2">
+				<div class="borderChart">
+		
+				</div>
+			</div>
+			<div class="space"></div>
+			<div class="select2">
+				<div class="borderChart">
+		
+				</div>
+			</div>
 		</div>
 	</div>
+
+	<div class="full2">
+		<div class="container" style="padding-bottom: 35px">
+			<div class="textContainer">
+
+		<p id="rodape">The data was retrieved from the <a href="http://elections.huffingtonpost.com/pollster/api" target="_blank"> Huffington Post Pollster API</a>.<br><br>
+			This project was done using <a href="http://d3js.org" target="_blank">d3.js</a>.
+			<br>
+		Copyright © 2012 <a href="http://luiscarli.com" target="_blank">Luis Carli</a></p>
+		
+			</div>
+		</div>
+	</div>
+
 
 <script type="text/javascript">
 
 var data
 var columnData = ["topic", "title", "choice"].map(function(e){
-	return {nestType: e}
+	return {nestType: e, active:false, d:[]}
 })
+columnData[0].active = true
 var mainDomains = ["topic", "title", "state", "party", "choice", "incumbent"]
 
 ///////////////
@@ -119,54 +219,39 @@ d3.json("charts.json", function (d) {
 		})
 	})
 	data = data2
-
 	
+	columnData[0].d = data
 
 	init()
 })
 
 function init(){
 
-	// Add options to select element
-	// var sel = d3.select("#containerChart1 select")
-	// sel.selectAll("option")
-	// 	.data(mainDomains)
-	// 	.enter()
-	// 	.append("option")
-	// 	.text(function(d){return d})
-
-	// sel.on("change", function(){
-	// 	var order = d3.select(this).attr("order")
-	// 	var nestType
-	// 	d3.select(this).selectAll("option")
-	// 		.each(function(e){
-	// 			var sel = d3.select(this)
-	// 			if (sel.property("selected")==true) {
-	// 				nestType = sel.text()
-	// 			}
-	// 		})
-	// 	columnData[order].nestType = nestType
-	// 	d3.select(".column>.borderChart#c"+ order).call(column.init)
-	// })
-
 	// Set ID and Order
-	d3.selectAll(".column>.borderChart").data([0,1,2])
+	var index = [0,1,2]
+
+	d3.selectAll(".column>.borderChart").data(index)
 		.attr({
 			order: function(d){return d},
 			id: function(d){return "c"+d}
 		})
-	d3.selectAll(".select>.borderChart").data([0,1,2])
+	d3.selectAll(".select>.borderChart").data(index)
 		.attr({
 			order: function(d){return d},
 			id: function(d){return "s"+d}
 		})
-	d3.selectAll(".link").data([0,1,2])
+	d3.selectAll(".select2>.borderChart").data(index)
+		.attr({
+			order: function(d){return d},
+			id: function(d){return "s2"+d}
+		})
+	d3.selectAll(".link").data(index)
 		.attr({
 			order: function(d){return d},
 			id: function(d){return "l"+d}
 		})
 
-
+	//init columns
 	d3.select(".column>.borderChart")
 		.each(function(){
 			d3.select(this).call(column.init)
@@ -178,10 +263,82 @@ function init(){
 			"class": "move", "id": "columnStartText"
 		})
 		.text("<- Select one or more")
-	categorical.init()
 
+	setSelections2()
+	function setSelections2(){
+
+		var selOptions = d3.selectAll(".select2>.borderChart").append("select")
+		
+		selOptions.selectAll("option")
+			.data(mainDomains)
+			.enter()
+			.append("option")
+			.text(function(d){return d})
+		selOptions
+			.data(columnData)
+			.each(function(d){
+				d3.select(this).selectAll("option")
+					.each(function(){
+						var aSel = d3.select(this)
+						if (aSel.text()==d.nestType) {
+							aSel.property("selected", true)
+						} else {aSel.property("selected", false)}
+					})
+			})
+			
+
+		selOptions.on("change", function(d,order){
+			// var order = d3.select(this).attr("order")
+			var nestType
+			d3.select(this).selectAll("option")
+				.each(function(e){
+					var sel = d3.select(this)
+					if (sel.property("selected")==true) {
+						nestType = sel.text()
+					}
+				})
+			columnData[order].nestType = nestType
+			d3.select(".column>.borderChart#c"+ order).call(column.init)
+			d3.select(".select>.borderChart#s"+order)
+				.selectAll("option")
+				.each(function(){
+					var aSel = d3.select(this)
+					if (aSel.text()==nestType) {
+						aSel.property("selected", true)
+					} else {aSel.property("selected", false)}
+				})
+		})
+		
+	}
+
+	d3.selectAll(".pool, .choice")
+		.on("mouseover", function (){
+			d3.select(this)
+				.style("border-color", d3.hsl(195,.7,.45))
+		})
+		.on("mouseout", function (){
+			d3.select(this)
+				.style("border-color", "black")
+		})
+	d3.selectAll(".poolP")
+		.on("mouseover", function (){
+			d3.select(this)
+				.style("color", d3.hsl(195,.7,.45))
+				.style("font-weight", "bold")
+		})
+		.on("mouseout", function (){
+			d3.select(this)
+				.style("color", "black")
+				.style("font-weight", "normal")
+		})
 }
 
 </script>
 </body>
 </html>
+
+
+
+
+
+

@@ -1,9 +1,76 @@
-body {
+body,
+html {
   margin: 0px;
   padding: 0px;
   background-color: white;
   /*background-image:url('img/tiny_grid.png');*/
 
+}
+a:hover,
+a:active,
+a:visited,
+a,
+a:link {
+  color: white;
+  text-decoration: none;
+  margin-left: 2px;
+}
+.full {
+  background-color: #414141;
+  box-shadow: inset 0 -4px 6px #000000;
+  /*position: fixed;*/
+
+  /*top: 0px;*/
+
+  /*left: 0px;*/
+
+  width: 100%;
+  /*height: 100%;*/
+
+  margin: 0;
+  padding: 0;
+  min-width: 1024px;
+}
+.full .container {
+  margin: 0 auto;
+  padding: 0;
+}
+.full .logo {
+  padding: 12px 0;
+  color: #e3e3e3;
+  /*cursor: pointer;*/
+
+  /*display: inline-block;*/
+
+  /*float: left;*/
+
+  text-shadow: -1px -1px 1px #000000;
+  font-family: "adelle", "Helvetica";
+  font-size: 13px;
+}
+.full:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.update {
+  margin-left: 34.66666666666667%;
+  background-color: yellow;
+  padding: 12px;
+  font-family: "adelle", "Helvetica";
+  font-size: 16px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  text-align: center;
+  display: none;
+}
+.updateCont {
+  display: none;
+}
+html.no-js .update,
+.no-js .updateCont {
+  display: block;
 }
 .container {
   width: 1000px;
@@ -15,9 +82,17 @@ body {
 }
 .container .textContainer h1 {
   font-family: "jaf-bernino-sans-comp", "Helvetica";
-  font-size: 40px;
-  line-height: 55px;
+  font-size: 45px;
+  line-height: 60px;
   color: black;
+  /*text-shadow: 2px 2px 0px lightgray;*/
+
+}
+.container .textContainer h2 {
+  font-size: 22px;
+  margin-bottom: 0px;
+  margin-top: 40px;
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
 }
 .container .textContainer p {
   font-family: "adelle", "Helvetica";
@@ -51,9 +126,17 @@ body {
 }
 #containerChart1 .textContainer h1 {
   font-family: "jaf-bernino-sans-comp", "Helvetica";
-  font-size: 40px;
-  line-height: 55px;
+  font-size: 45px;
+  line-height: 60px;
   color: black;
+  /*text-shadow: 2px 2px 0px lightgray;*/
+
+}
+#containerChart1 .textContainer h2 {
+  font-size: 22px;
+  margin-bottom: 0px;
+  margin-top: 40px;
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
 }
 #containerChart1 .textContainer p {
   font-family: "adelle", "Helvetica";
@@ -73,6 +156,8 @@ body {
   box-shadow: 0px 3px 0px #000000;
   height: 500px;
   background-color: #808080;
+  background-image: -webkit-linear-gradient(top, #666666, #808080 5%, #808080 80%, #999999);
+  background-image: -moz-linear-gradient(top, #666666, #808080 5%, #808080 80%, #999999);
   position: relative;
   overflow: hidden;
 }
@@ -85,24 +170,30 @@ body {
   height: 500px;
   float: left;
 }
-#containerChart1 .select {
+#containerChart1 .select,
+#containerChart1 .select2 {
   width: 26.666666666666668%;
   margin: 25px 0;
   float: left;
   height: 31px;
 }
-#containerChart1 .select .borderChart {
+#containerChart1 .select .borderChart,
+#containerChart1 .select2 .borderChart {
   box-shadow: 0px 3px 0px #000000;
   height: 31px;
   background-color: #808080;
+  background-image: -webkit-linear-gradient(top, #666666, #808080 30%, #808080 60%, #999999);
+  background-image: -moz-linear-gradient(top, #666666, #808080 30%, #808080 60%, #999999);
   position: relative;
   overflow: hidden;
 }
-#containerChart1 .select .borderChart .move {
+#containerChart1 .select .borderChart .move,
+#containerChart1 .select2 .borderChart .move {
   position: absolute;
   width: 100%;
 }
-#containerChart1 .select .borderChart .move select {
+#containerChart1 .select .borderChart select,
+#containerChart1 .select2 .borderChart select {
   width: 100%;
   border-radius: 8px;
   padding-top: 5px;
@@ -122,8 +213,10 @@ body {
 
   color: black;
   outline: none;
+  background-image: url('img/arrow.png');
 }
-#containerChart1 .select .borderChart .move select option {
+#containerChart1 .select .borderChart select option,
+#containerChart1 .select2 .borderChart select option {
   text-indent: 18px;
   font-weight: normal;
   /*color: #357dba;*/
@@ -138,16 +231,157 @@ body {
   height: 500px;
   background-color: none;
   margin-top: 35px;
+  position: relative;
+}
+#containerChart1 #categorical svg.tip1,
+#containerChart1 #categorical svg.tip2 {
+  position: absolute;
+  top: 100px;
+}
+#containerChart1 #categorical .tooltip0,
+#containerChart1 #categorical .tooltip1 {
+  visibility: hidden;
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-style: solid;
+  border-radius: 8px;
+  border-width: 2px;
+  border-color: black;
+  box-shadow: 1px 1px 4px gray;
+  font-family: "jaf-bernino-sans-comp";
+  font-size: 14px;
+  text-align: center;
+}
+#containerChart1 #categorical .tooltip0 p,
+#containerChart1 #categorical .tooltip1 p {
+  margin: 8px;
+}
+#containerChart1 #categorical .tooltip0 {
+  text-align: center;
 }
 #columnStartText {
   color: white;
+  text-shadow: 0px -2px 2px #000000, 0px 2px 2px #000000;
   position: absolute;
   top: 45%;
-  margin-right: 33%;
-  font-size: 16px;
+  margin-right: 26%;
+  font-size: 20px;
   font-family: "jaf-bernino-sans-comp", "Helvetica";
+  font-weight: bold;
   right: 0%;
 }
 text {
   font-family: "jaf-bernino-sans-comp", "adelle";
+}
+.poolContainer {
+  width: 500px;
+  margin: 50px 0;
+}
+.poolContainer p.poolP {
+  font-size: 16px;
+  margin: 2px 5px;
+  pointer-events: "none";
+}
+.poolContainer .pool {
+  border-style: solid;
+  border-width: 2px;
+  margin-bottom: 12px;
+  box-shadow: 2px 2px 0px gray;
+  padding-top: 6px;
+  background-color: white;
+  background-image: -webkit-linear-gradient(top, #ffffff 10%, #d3d3d3 70%, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff 10%, #d3d3d3 70%, #ffffff);
+}
+.poolContainer .pool p.poolP {
+  margin-left: 12px;
+}
+.poolContainer .pool:after {
+  display: table;
+  content: "";
+  clear: both;
+}
+.poolContainer .top {
+  height: 20px;
+  border-top-style: none;
+  background-image: -webkit-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+}
+.poolContainer .bottom {
+  height: 20px;
+  border-bottom-style: none;
+  box-shadow: 2px 0px 0px gray;
+  background-image: none;
+  background-image: -webkit-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+}
+.poolContainer .choice {
+  border-style: solid;
+  border-width: 2px;
+  margin: 10px;
+  box-shadow: 2px 2px 0px gray;
+  width: 140px;
+  padding: 2px 0;
+  float: left;
+  background-color: white;
+  background-image: -webkit-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+  background-image: -moz-linear-gradient(top, #ffffff, #d3d3d3 90%, #ffffff);
+}
+.poolContainer .choice p.poolP {
+  margin-left: 8px;
+}
+.full2 .textContainer p,
+.full2 .textContainer h2 {
+  color: #eaeaea;
+  font-size: 15px;
+  margin: 0;
+  text-shadow: -1px -1px 1px #000000;
+  font-family: "adelle", "Helvetica";
+}
+.full2 .textContainer p a,
+.full2 .textContainer h2 a {
+  text-decoration: underline;
+}
+.full2 .textContainer h2 {
+  color: white;
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-family: "jaf-bernino-sans-comp", "Helvetica";
+}
+.full2 {
+  background-color: #414141;
+  box-shadow: 0 4px 6px black inset;
+  /*position: fixed;*/
+
+  /*top: 0px;*/
+
+  /*left: 0px;*/
+
+  /*width: 100%;*/
+
+  padding-top: 10px;
+  padding-bottom: 0px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  margin-top: 100px;
+  min-width: 1024px;
+}
+#rodape {
+  margin-top: 10px;
+  /*font-style: italic;*/
+
+  font-size: 12px;
+  text-shadow: none;
+  line-height: 18px;
+  /*font-family: @fontTitle;*/
+
+}
+#rodape a {
+  text-decoration: underline;
+}
+.full2:after {
+  content: "";
+  clear: both;
+  display: table;
 }

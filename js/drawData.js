@@ -71,7 +71,7 @@ function drawData (data) {
 		}
 	}
 	
-	function type(o){
-	    return !!o && Object.prototype.toString.call(o).match(/(\w+)\]/)[1];
-	}
+}
+function type(o){
+    return !!o && Object.prototype.toString.call(o).match(/(\w+)\]/)[1];
 }

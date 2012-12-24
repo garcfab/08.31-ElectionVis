@@ -31,8 +31,8 @@ link.init = function (sel) {
 		.attr({
 			"d": "M 0,8 l "+w+",0 L "+(+w+2)+","+h+" C "+w/2+","+h+" "+w/2+","
 				+last+" 0,"+last,
-			fill: "#434f5d",
-			stroke: "#434f5d"
+			fill: c2,
+			stroke: c2
 		})
 }
 
